@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Sinh viên:</h1>
+
+    <div id="output">
+
+    </div>
+
+    <script>
+
+        const outputHtml = document.querySelector('#output');
+
+        function SinhVien(tenSv,tuoiSV,diemJS,khcach){
+            this.ten = tenSv;
+            this.tuoi = tuoiSV;
+            this.diem = diemJS;
+            this.khcach = khcach;
+        }
+
+        let sv1 =  new SinhVien("Tuyet",20,10,10);
+        let sv2 =  new SinhVien("Nguyen",30,15,11);
+
+        //tạo 1 mảng
+        let arraySV= new Array();
+        //đưa sv vào mảng
+        arraySV.push(sv1);
+        arraySV.push(sv2);
+
+        for (let i = 0; i < 2; i++) {
+            let temp = new SinhVien();
+            let tenSV =  prompt("nhập tên sinh viên: ");
+            temp.ten = tenSV;
+            let tuoiSV = parseInt( prompt("mời nhập tuổi: "));
+            temp.tuoi = tuoiSV;
+            let diemJS = parseInt(prompt("mời nhập điểm js: "));
+            temp.diem = diemJS;
+            let khcach = parseInt(prompt("mời nhập kh cách: "));
+            temp.khcach = khcach;
+            arraySV.push(temp);
+        }
+        // console.log(arraySV)
+
+        function onOutput(){
+           const result = arraySV.map((x,index) => {
+                return `<div>
+                            <p>#${index + 1}</p>
+                            <p>Tên: ${x.ten}, ${x.tuoi} tuổi, ${x.diem} điểm JS</p>
+                            <p>Khoảng cách ${x.ten} đi từ nhà đến trường là: ${x.khcach}km</p>
+                        </div>`
+            })
+            outputHtml.innerHTML = result.join('');
+        }
+
+        onOutput();
+    </script>
+</body>
+</html>
